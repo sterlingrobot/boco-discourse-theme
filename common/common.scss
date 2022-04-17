@@ -1,7 +1,16 @@
 body {
     font-family: Ubuntu, sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.428571429;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+h1, h2, h3, h4 {
+    color: #3a3e5d;
+    font-weight: bold;
 }
 
 nav.navbar {
@@ -54,6 +63,7 @@ ul.nav li i {
     .nav-wrapper {
         display: flex;
         align-items: center;
+        max-width: 1130px;
     }
 
     .navbar {
@@ -112,6 +122,10 @@ ul.nav li i {
 }
 
 @media screen and (max-width: 767px) {
+    .nav-wrapper {
+        display: none;
+    }
+
     nav.navbar.navbar-default {
         border: none;
         background-color: #3a3e5d;
@@ -127,25 +141,5 @@ ul.nav li i {
     nav.navbar.navbar-default ul.navbar-nav a {
         padding: 15px 15px;
         font-size: 17px;
-    }
-
-    nav.navbar.navbar-default ul.navbar-nav .dropdown-menu a {
-        padding-left: 45px;
-    }
-
-    nav.navbar.navbar-default ul.navbar-nav a,
-    nav.navbar.navbar-default ul.navbar-nav .active a,
-    nav.navbar.navbar-default ul.navbar-nav .open .dropdown-menu > li > a,
-    nav.navbar.navbar-default ul.navbar-nav .open .dropdown-menu > li > a:hover,
-    nav.navbar.navbar-default ul.navbar-nav .open .dropdown-menu > li > a:focus {
-        color: #ddd;
-    }
-
-    nav.navbar.navbar-default .navbar-toggle {
-        margin: 10px;
-    }
-
-    nav.navbar.navbar-default .navbar-toggle .icon-bar {
-        background-color: #fff;
     }
 }
