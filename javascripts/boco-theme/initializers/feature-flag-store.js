@@ -1,4 +1,3 @@
-// import { withPluginApi } from 'discourse/lib/plugin-api';
 const STORE_KEY = '__featureFlags';
 
 const MOBILE_NAV_ENABLED = 'MOBILE_NAV_ENABLED';
@@ -6,7 +5,7 @@ const MOBILE_NAV_ENABLED = 'MOBILE_NAV_ENABLED';
 const FEATURE_FLAG_DEFAULT_VALUES = {
     [MOBILE_NAV_ENABLED]: false,
 };
-class FeatureFlagStore {
+export class FeatureFlagStore {
     data = {};
 
     callback = () => {};
