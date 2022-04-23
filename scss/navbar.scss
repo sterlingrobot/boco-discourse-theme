@@ -130,3 +130,18 @@ ul.nav:not(.nav-pills) li i {
         font-size: 17px;
     }
 }
+
+// New nav overrides
+.title .navbar .nav-wrapper {
+    .logo a {
+        padding: 0;
+    }
+
+    .main-nav {
+        margin-left: 24px;
+    }
+
+    ul.nav {
+        margin: 0;
+    }
+}
