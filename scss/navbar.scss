@@ -6,11 +6,15 @@ nav.navbar {
     border-radius: 0;
 }
 
+nav.navbar ul.nav:not(.nav-pills) a {
+    color: var(--header_primary-high);
+}
+
 ul.nav:not(.nav-pills) a:hover,
 ul.nav:not(.nav-pills) a:focus,
 ul.nav:not(.nav-pills) .active a:hover,
 ul.nav:not(.nav-pills) .active a:focus {
-    color: var(--primary-low);
+    color: var(--header_primary);
     background-color: transparent;
 }
 
@@ -48,7 +52,7 @@ ul.nav:not(.nav-pills) .active a:focus {
     }
 
     .navbar .main-nav ul.nav a:hover {
-        color: var(--secondary);
+        color: var(--header_primary);
     }
 
     .navbar .main-nav ul.nav li {
