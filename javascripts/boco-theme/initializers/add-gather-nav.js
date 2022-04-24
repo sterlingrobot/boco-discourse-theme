@@ -68,12 +68,13 @@ export default {
 
             if (FeatureFlagStore.get(MOBILE_NAV_ENABLED)) {
                 api.decorateWidget('hamburger-menu:before', (helper) => {
-                    const { capabilities, site, siteSettings } = this;
-                    const mobileTouch = siteSettings.enable_mobile_theme && capabilities.touch;
+                    console.log(this);
+                    // const { capabilities, site, siteSettings } = this;
+                    // const mobileTouch = siteSettings.enable_mobile_theme && capabilities.touch;
 
-                    if (site.mobileView || mobileTouch) {
-                        return helper.h('div.main-nav', h('ul.nav', navLinks));
-                    }
+                    // if (site.mobileView || mobileTouch) {
+                    return helper.h('div.main-nav', h('ul.nav', navLinks));
+                    // }
                 });
             }
         });
