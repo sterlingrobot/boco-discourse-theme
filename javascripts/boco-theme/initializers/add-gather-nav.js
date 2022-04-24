@@ -1,5 +1,4 @@
 import { withPluginApi } from 'discourse/lib/plugin-api';
-import { FeatureFlagStore, MOBILE_NAV_ENABLED } from './feature-flag-store';
 
 const logoLink = 'https://bozeman.gather.coop/';
 const logoUrl =
@@ -43,22 +42,19 @@ export default {
             api.reopenWidget('home-logo', {
                 html() {
                     const h = require('virtual-dom').h;
-                    if (FeatureFlagStore?.get(MOBILE_NAV_ENABLED)) {
-                        const navLinks = links.map((link) =>
-                            h('li.'.concat(link.className ?? ''), h('a', { attributes: { href: link.url } }, link.text))
-                        );
-                        return h(
-                            'nav.navbar.navbar-default.hidden-xs',
-                            h('div.nav-wrapper', [
-                                h(
-                                    'div.logo.nav-1.hidden-sm',
-                                    h('a', { href: logoLink }, h('img', { attributes: { src: logoUrl } }))
-                                ),
-                                h('div.main-nav', h('ul.nav', navLinks)),
-                            ])
-                        );
-                    }
-                    return h('a', { attributes: { href: this.href(), 'data-auto-route': true } }, this.logo());
+                    const navLinks = links.map((link) =>
+                        h('li.'.concat(link.className ?? ''), h('a', { attributes: { href: link.url } }, link.text))
+                    );
+                    return h(
+                        'nav.navbar.navbar-default.hidden-xs',
+                        h('div.nav-wrapper', [
+                            h(
+                                'div.logo.nav-1.hidden-sm',
+                                h('a', { href: logoLink }, h('img', { attributes: { src: logoUrl } }))
+                            ),
+                            h('div.main-nav', h('ul.nav', navLinks)),
+                        ])
+                    );
                 },
             });
         });
