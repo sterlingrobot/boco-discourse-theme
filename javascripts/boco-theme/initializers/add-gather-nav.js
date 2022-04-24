@@ -1,5 +1,10 @@
 import { withPluginApi } from 'discourse/lib/plugin-api';
+import { applyDecorators } from 'discourse/widgets/widget';
+import getURL from 'discourse-common/lib/get-url';
+
 import { FeatureFlagStore, MOBILE_NAV_ENABLED } from './feature-flag-store';
+
+const flatten = (array) => [].concat.apply([], array);
 
 const logoLink = 'https://bozeman.gather.coop/';
 const logoUrl =
@@ -87,7 +92,6 @@ export default {
                             );
                         }
 
-    
                         if (site.mobileView || mobileTouch) {
                             results.push(
                                 this.attach('menu-links', {
