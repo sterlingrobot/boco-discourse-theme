@@ -43,6 +43,11 @@ ul.nav {
     background-color: var(--quaternary);
 }
 
+.menu-container-gather-links a {
+    display: block;
+    padding: 8px;
+}
+
 @media screen and (min-width: 992px) {
     .logo img {
         height: 50px;

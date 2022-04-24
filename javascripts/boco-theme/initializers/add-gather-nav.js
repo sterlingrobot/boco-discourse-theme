@@ -96,7 +96,7 @@ export default {
                             results.push(
                                 this.attach('menu-links', {
                                     name: 'gather-links',
-                                    contents: () => links.map(link => h('a', { attributes: { href: link.url } }, link.text)),
+                                    contents: () => links.slice(0, 6).map(link => h('a', { attributes: { href: link.url } }, link.text)),
                                 })
                             );
                         }
