@@ -3,7 +3,7 @@ const STORE_KEY = '__featureFlags';
 export const MOBILE_NAV_ENABLED = 'MOBILE_NAV_ENABLED';
 
 const FEATURE_FLAG_DEFAULT_VALUES = {
-    [MOBILE_NAV_ENABLED]: true,
+    [MOBILE_NAV_ENABLED]: false,
 };
 export class FeatureFlagStore {
     data = {};
