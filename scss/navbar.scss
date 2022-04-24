@@ -6,6 +6,10 @@ nav.navbar {
     border-radius: 0;
 }
 
+.main-nav {
+    margin-left: 24px;
+}
+
 nav.navbar ul.nav:not(.nav-pills) a {
     color: var(--header_primary-high);
 }
@@ -20,13 +24,23 @@ ul.nav:not(.nav-pills) .active a:focus {
 
 @media screen and (min-width: 992px) {
     .logo img {
-        height: 54px;
+        height: 50px;
     }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
+    .logo a {
+        width: 3rem;
+        overflow: hidden;
+    }
+
     .logo img {
         height: 40px;
+    }
+
+    .main-nav {
+        margin-left: 0;
+        padding: 8px 0;
     }
 }
 
@@ -82,11 +96,7 @@ ul.nav:not(.nav-pills) .active a:focus {
 // New nav overrides
 .title .navbar .nav-wrapper {
     .logo a {
-        padding: 0;
-    }
-
-    .main-nav {
-        margin-left: 24px;
+        padding: 0 0 4px;
     }
 
     ul.nav {
