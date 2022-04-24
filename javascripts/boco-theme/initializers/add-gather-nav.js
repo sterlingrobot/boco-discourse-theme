@@ -55,15 +55,11 @@ export default {
                     const isMinimized = this.attrs.minimized;
 
                     return h(
-                        'nav.navbar.navbar-default.hidden-xs',
+                        'nav.navbar'.concat(isMinimized ? '.minimized' : ''),
                         h('div.nav-wrapper', [
                             h(
-                                'div.logo.nav-1.hidden-sm',
-                                h(
-                                    'a',
-                                    { href: logoLink, attributes: { style: isMinimized ? 'width: 2.4rem' : '' } },
-                                    h('img', { attributes: { src: logoUrl } })
-                                )
+                                'div.logo',
+                                h('a', { href: logoLink }, h('img', { attributes: { src: logoUrl } }))
                             ),
                             h('div.main-nav', h('ul.nav', navLinks)),
                         ])
@@ -96,7 +92,10 @@ export default {
                             results.push(
                                 this.attach('menu-links', {
                                     name: 'gather-links',
-                                    contents: () => links.slice(0, 6).map(link => h('a', { attributes: { href: link.url } }, link.text)),
+                                    contents: () =>
+                                        links
+                                            .slice(0, 6)
+                                            .map((link) => h('a', { attributes: { href: link.url } }, link.text)),
                                 })
                             );
                         }

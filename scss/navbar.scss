@@ -43,6 +43,19 @@ ul.nav {
     background-color: var(--quaternary);
 }
 
+nav.navbar.minimized {
+    max-width: 3.5rem;
+    overflow: hidden;
+
+    .main-nav {
+        display: none;
+    }
+}
+
+.extra-info-wrapper {
+    flex: 1;
+}
+
 .menu-container-gather-links a {
     display: block;
     padding: 8px;
