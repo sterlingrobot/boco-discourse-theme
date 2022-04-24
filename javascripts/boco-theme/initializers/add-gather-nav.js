@@ -96,7 +96,7 @@ export default {
                             results.push(
                                 this.attach('menu-links', {
                                     name: 'gather-links',
-                                    contents: () => h('div.main-nav', h('ul.nav', navLinks)),
+                                    contents: () => links.map(link => h('a', { attributes: { href: link.url } }, link.text)),
                                 })
                             );
                         }
