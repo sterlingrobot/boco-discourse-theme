@@ -67,13 +67,70 @@ export default {
             });
 
             if (FeatureFlagStore.get(MOBILE_NAV_ENABLED)) {
-                api.decorateWidget('hamburger-menu:before', (helper) => {
-                    const { capabilities, site, siteSettings } = helper.widget;
-                    const mobileTouch = siteSettings.enable_mobile_theme && capabilities.touch;
+                api.reopenWidget('hamburger-menu', {
+                    panelContents() {
+                        const { attrs, capabilities, currentUser, settings, site, siteSettings, state } = this;
+                        const results = [];
+                        const faqUrl = siteSettings.faq_url || getURL('/faq');
+                        const prioritizeFaq = settings.showFAQ && currentUser && !currentUser.read_faq;
+                        const mobileTouch = siteSettings.enable_mobile_theme && capabilities.touch;
 
-                    if (site.mobileView || mobileTouch) {
-                        return helper.h('div.main-nav', h('ul.nav', navLinks));
-                    }
+                        if (prioritizeFaq) {
+                            results.push(
+                                this.attach('menu-links', {
+                                    name: 'faq-link',
+                                    heading: true,
+                                    contents: () => {
+                                        return this.attach('priority-faq-link', { href: faqUrl });
+                                    },
+                                })
+                            );
+                        }
+
+    
+                        if (site.mobileView || mobileTouch) {
+                            results.push(
+                                this.attach('menu-links', {
+                                    name: 'gather-links',
+                                    contents: () => h('div.main-nav', h('ul.nav', navLinks)),
+                                })
+                            );
+                        }
+
+                        if (currentUser && currentUser.staff) {
+                            results.push(
+                                this.attach('menu-links', {
+                                    name: 'admin-links',
+                                    contents: () => {
+                                        const extraLinks = flatten(applyDecorators(this, 'admin-links', attrs, state));
+                                        return this.adminLinks().concat(extraLinks);
+                                    },
+                                })
+                            );
+                        }
+
+                        results.push(
+                            this.attach('menu-links', {
+                                name: 'general-links',
+                                contents: () => this.generalLinks(),
+                            })
+                        );
+
+                        if (settings.showCategories) {
+                            results.push(this.listCategories());
+                            results.push(h('hr.categories-separator'));
+                        }
+
+                        results.push(
+                            this.attach('menu-links', {
+                                name: 'footer-links',
+                                omitRule: true,
+                                contents: () => this.footerLinks(prioritizeFaq, faqUrl),
+                            })
+                        );
+
+                        return results;
+                    },
                 });
             }
         });
