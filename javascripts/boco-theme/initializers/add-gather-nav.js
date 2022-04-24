@@ -65,13 +65,13 @@ export default {
                 },
             });
 
-            api.decorateWidget('hamburger-menu:before', (helper) => {
-                const mobileTouch = siteSettings.enable_mobile_theme && capabilities.touch;
+            // api.decorateWidget('hamburger-menu:before', (helper) => {
+                // const mobileTouch = siteSettings.enable_mobile_theme && capabilities.touch;
 
-                if (site.mobileView || mobileTouch) {
-                    return helper.h('div.main-nav', h('ul.nav', navLinks));
-                }
-            });
+                // if (site.mobileView || mobileTouch) {
+                //     return helper.h('div.main-nav', h('ul.nav', navLinks));
+                // }
+            // });
         });
     },
 };
