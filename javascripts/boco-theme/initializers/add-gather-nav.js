@@ -39,12 +39,13 @@ export default {
     name: 'add-gather-nav',
     initialize() {
         withPluginApi('0.8.7', (api) => {
+            const h = require('virtual-dom').h;
+            const navLinks = links.map((link) =>
+                h('li.'.concat(link.className ?? ''), h('a', { attributes: { href: link.url } }, link.text))
+            );
+
             api.reopenWidget('home-logo', {
                 html() {
-                    const h = require('virtual-dom').h;
-                    const navLinks = links.map((link) =>
-                        h('li.'.concat(link.className ?? ''), h('a', { attributes: { href: link.url } }, link.text))
-                    );
                     const isMinimized = this.attrs.minimized;
 
                     return h(
@@ -62,6 +63,14 @@ export default {
                         ])
                     );
                 },
+            });
+
+            api.decorateWidget('hamburger-menu:before', (helper) => {
+                const mobileTouch = siteSettings.enable_mobile_theme && capabilities.touch;
+
+                if (site.mobileView || mobileTouch) {
+                    return helper.h('div.main-nav', h('ul.nav', navLinks));
+                }
             });
         });
     },
