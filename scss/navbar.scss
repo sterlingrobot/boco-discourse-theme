@@ -13,6 +13,7 @@ nav.navbar {
 .navbar .logo a {
     display: block;
     padding: 0 0 4px;
+    overflow: hidden;
 }
 
 ul.nav {
@@ -51,7 +52,6 @@ ul.nav {
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .logo a {
         width: 3rem;
-        overflow: hidden;
     }
 
     .logo img {

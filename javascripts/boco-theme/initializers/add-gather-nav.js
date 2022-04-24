@@ -45,12 +45,18 @@ export default {
                     const navLinks = links.map((link) =>
                         h('li.'.concat(link.className ?? ''), h('a', { attributes: { href: link.url } }, link.text))
                     );
+                    const isMinimized = this.attrs.minimized;
+
                     return h(
                         'nav.navbar.navbar-default.hidden-xs',
                         h('div.nav-wrapper', [
                             h(
                                 'div.logo.nav-1.hidden-sm',
-                                h('a', { href: logoLink }, h('img', { attributes: { src: logoUrl } }))
+                                h(
+                                    'a',
+                                    { href: logoLink, attributes: { style: isMinimized ? 'width: 2.4rem' : '' } },
+                                    h('img', { attributes: { src: logoUrl } })
+                                )
                             ),
                             h('div.main-nav', h('ul.nav', navLinks)),
                         ])
