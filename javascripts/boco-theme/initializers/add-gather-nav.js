@@ -35,12 +35,12 @@ const links = [
         text: 'Wiki',
     },
     {
-        isDefault: true,
+        id: 'discourse-nav-link',
         url: '/',
         text: 'Discourse',
     },
     {
-        isMessages: true,
+        id: 'messages-nav-link',
         url: '/my/messages',
         text: 'Messages',
     },
@@ -51,11 +51,12 @@ export default {
     initialize() {
         withPluginApi('0.8.7', (api) => {
             const h = require('virtual-dom').h;
-            const isMessages = /\/messages$/.test(window.location.href);
-            const navLinks = links.map((link) => {
-                const isActive = isMessages && link.isMessages || !isMessages && link.isDefault;
-                return h('li.'.concat(isActive ? 'active' : ''), h('a', { attributes: { href: link.url } }, link.text))
-            });
+            const navLinks = links.map((link) =>
+                h(
+                    'li'.concat(link.id ? `#${link.id}` : ''),
+                    h('a', { attributes: { href: link.url, id: link.id } }, link.text)
+                )
+            );
 
             api.reopenWidget('home-logo', {
                 html() {
@@ -64,14 +65,17 @@ export default {
                     return h(
                         'nav.navbar'.concat(isMinimized ? '.minimized' : ''),
                         h('div.nav-wrapper', [
-                            h(
-                                'div.logo',
-                                h('a', { href: logoLink }, h('img', { attributes: { src: logoUrl } }))
-                            ),
+                            h('div.logo', h('a', { href: logoLink }, h('img', { attributes: { src: logoUrl } }))),
                             h('div.main-nav', h('ul.nav', navLinks)),
                         ])
                     );
                 },
+            });
+
+            api.onPageChange((url) => {
+                const isMessages = /\/messages$/.test(url);
+                document.getElementById('messages-nav-link').classList.toggle('active', isMessages)
+                document.getElementById('discourse-nav-link').classList.toggle('active', !isMessages)
             });
 
             if (FeatureFlagStore.get(MOBILE_NAV_ENABLED)) {
