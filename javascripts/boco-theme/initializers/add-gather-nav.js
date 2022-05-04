@@ -73,7 +73,7 @@ export default {
             });
 
             api.onPageChange((url) => {
-                const isMessages = /\/messages$/.test(url);
+                const isMessages = /\/messages/.test(url);
                 document.getElementById('messages-nav-link').classList.toggle('active', isMessages)
                 document.getElementById('discourse-nav-link').classList.toggle('active', !isMessages)
             });
