@@ -83,7 +83,9 @@ nav.navbar.minimized {
         margin-left: 0;
         padding: 8px 0;
     }
+}
 
+@media screen and (min-width: 768px) and (max-width: 860px) {
     .navbar .main-nav ul.nav li {
         font-size: 13px;
     }    
