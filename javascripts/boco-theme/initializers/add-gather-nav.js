@@ -35,9 +35,14 @@ const links = [
         text: 'Wiki',
     },
     {
-        className: 'active',
+        isDefault: true,
         url: '/',
         text: 'Discourse',
+    },
+    {
+        isMessages: true,
+        url: '/my/messages',
+        text: 'Messages',
     },
 ];
 
@@ -46,9 +51,11 @@ export default {
     initialize() {
         withPluginApi('0.8.7', (api) => {
             const h = require('virtual-dom').h;
-            const navLinks = links.map((link) =>
-                h('li.'.concat(link.className ?? ''), h('a', { attributes: { href: link.url } }, link.text))
-            );
+            const isMessages = /\/messages$/.test(window.location.href);
+            const navLinks = links.map((link) => {
+                const isActive = isMessages && link.isMessages || !isMessages && link.isDefault;
+                return h('li.'.concat(isActive ? 'active' : ''), h('a', { attributes: { href: link.url } }, link.text))
+            });
 
             api.reopenWidget('home-logo', {
                 html() {
