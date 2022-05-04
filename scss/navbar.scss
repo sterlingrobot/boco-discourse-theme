@@ -64,13 +64,13 @@ nav.navbar.minimized {
     padding: 8px;
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1041px) {
     .logo img {
         height: 50px;
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 991px) {
+@media screen and (min-width: 768px) and (max-width: 1040px) {
     .logo a {
         width: 3rem;
     }
@@ -82,6 +82,14 @@ nav.navbar.minimized {
     .main-nav {
         margin-left: 0;
         padding: 8px 0;
+    }
+
+    .navbar .main-nav ul.nav li {
+        font-size: 13px;
+    }    
+
+    .navbar .main-nav ul.nav a {
+        padding: 7px 12px;
     }
 }
 
