@@ -58,14 +58,30 @@ export default {
                 )
             );
 
+            const handleClick = (event) => {
+                event.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
             api.reopenWidget('home-logo', {
+                click() {},
                 html() {
                     const isMinimized = this.attrs.minimized;
 
                     return h(
                         'nav.navbar'.concat(isMinimized ? '.minimized' : ''),
                         h('div.nav-wrapper', [
-                            h('div.logo', h('a', { href: logoLink }, h('img', { attributes: { src: logoUrl } }))),
+                            h(
+                                'div.logo',
+                                h(
+                                    'a',
+                                    {
+                                        href: isMinimized ? '#' : logoLink,
+                                        onclick: isMinimized ? handleClick : undefined,
+                                    },
+                                    h('img', { attributes: { src: logoUrl } })
+                                )
+                            ),
                             h('div.main-nav', h('ul.nav', navLinks)),
                         ])
                     );
@@ -74,8 +90,8 @@ export default {
 
             api.onPageChange((url) => {
                 const isMessages = /\/messages/.test(url);
-                document.getElementById('messages-nav-link').classList.toggle('active', isMessages)
-                document.getElementById('discourse-nav-link').classList.toggle('active', !isMessages)
+                document.getElementById('messages-nav-link').classList.toggle('active', isMessages);
+                document.getElementById('discourse-nav-link').classList.toggle('active', !isMessages);
             });
 
             if (FeatureFlagStore.get(MOBILE_NAV_ENABLED)) {
