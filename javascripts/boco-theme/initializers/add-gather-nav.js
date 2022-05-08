@@ -64,18 +64,17 @@ export default {
                     const isMinimized = this.attrs.minimized;
 
                     const handleClick = (event) => {
-
                         event.preventDefault();
 
                         if (isMinimized) {
                             return window.scrollTo(0, 0);
                         }
                         if (isRootUrl()) {
-                            return window.history.pushState(null, '', logoLink);
+                            return (window.location = logoLink);
                         }
-                        return window.history.pushState(null, '', getURL('/'));
+                        return (window.location = getURL('/'));
                     };
-        
+
                     return h(
                         'nav.navbar'.concat(isMinimized ? '.minimized' : ''),
                         h('div.nav-wrapper', [
