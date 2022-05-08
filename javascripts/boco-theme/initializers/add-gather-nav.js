@@ -5,6 +5,7 @@ import getURL from 'discourse-common/lib/get-url';
 import { FeatureFlagStore, MOBILE_NAV_ENABLED } from './feature-flag-store';
 
 const flatten = (array) => [].concat.apply([], array);
+const isRootUrl = () => new RegExp(window.location.host.concat('/$')).test(window.location.href);
 
 const logoLink = 'https://bozeman.gather.coop/';
 const logoUrl =
@@ -58,16 +59,23 @@ export default {
                 )
             );
 
-            const handleClick = (event) => {
-                event.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-
             api.reopenWidget('home-logo', {
-                click() {},
                 html() {
                     const isMinimized = this.attrs.minimized;
 
+                    const handleClick = (event) => {
+
+                        event.preventDefault();
+
+                        if (isMinimized) {
+                            return window.scrollTo(0, 0);
+                        }
+                        if (isRootUrl()) {
+                            return window.history.pushState(null, '', logoLink);
+                        }
+                        return window.history.pushState(null, '', getURL('/'));
+                    };
+        
                     return h(
                         'nav.navbar'.concat(isMinimized ? '.minimized' : ''),
                         h('div.nav-wrapper', [
@@ -76,8 +84,8 @@ export default {
                                 h(
                                     'a',
                                     {
-                                        href: isMinimized ? '#' : logoLink,
-                                        onclick: isMinimized ? handleClick : undefined,
+                                        href: '#',
+                                        onclick: handleClick,
                                     },
                                     h('img', { attributes: { src: logoUrl } })
                                 )
