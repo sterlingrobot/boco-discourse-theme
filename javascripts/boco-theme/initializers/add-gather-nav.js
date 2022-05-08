@@ -65,14 +65,7 @@ export default {
 
                     const handleClick = (event) => {
                         event.preventDefault();
-
-                        if (isMinimized) {
-                            return window.scrollTo(0, 0);
-                        }
-                        if (isRootUrl()) {
-                            return (window.location = logoLink);
-                        }
-                        return (window.location = getURL('/'));
+                        window.scrollTo(0, 0);
                     };
 
                     return h(
@@ -83,8 +76,8 @@ export default {
                                 h(
                                     'a',
                                     {
-                                        href: '#',
-                                        onclick: handleClick,
+                                        href: isMinimized ? '#' : getURL('/'),
+                                        onclick: isMinimized ? handleClick : undefined,
                                     },
                                     h('img', { attributes: { src: logoUrl } })
                                 )
