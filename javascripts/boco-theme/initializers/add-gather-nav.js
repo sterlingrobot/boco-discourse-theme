@@ -29,22 +29,26 @@ const links = [
     },
     {
         url: 'https://bozeman.gather.coop/calendars/events',
-        text: 'Calendars',
+        text: 'Scheduling',
     },
     {
-        url: 'https://bozeman.gather.coop/wiki',
-        text: 'Wiki',
+        url: 'https://calendar.google.com/calendar/u/4?cid=YWRtaW5AYm9jb2hvLm9ubGluZQ',
+        text: 'Events'
+    },
+    {
+        url: 'https://drive.google.com/drive/folders/17JICgu7kZ4FCmJiZEih1esubTM6Or3d2?usp=share_link',
+        text: 'Documents',
     },
     {
         id: 'discourse-nav-link',
         url: '/',
         text: 'Discourse',
     },
-    {
+   /* {
         id: 'messages-nav-link',
         url: '/my/messages',
         text: 'Messages',
-    },
+    },*/
 ];
 
 export default {
