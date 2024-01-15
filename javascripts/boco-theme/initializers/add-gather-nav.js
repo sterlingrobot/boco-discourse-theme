@@ -29,11 +29,11 @@ const links = [
     },
     {
         url: 'https://bozeman.gather.coop/calendars/events',
-        text: 'Scheduling',
+        text: 'Reservations',
     },
     {
         url: 'https://calendar.google.com/calendar/u/4?cid=YWRtaW5AYm9jb2hvLm9ubGluZQ',
-        text: 'Events'
+        text: 'Calendar'
     },
     {
         url: 'https://drive.google.com/drive/folders/17JICgu7kZ4FCmJiZEih1esubTM6Or3d2?usp=share_link',
@@ -42,7 +42,7 @@ const links = [
     {
         id: 'discourse-nav-link',
         url: '/',
-        text: 'Discourse',
+        text: 'Discussions',
     },
    /* {
         id: 'messages-nav-link',
@@ -94,7 +94,7 @@ export default {
 
             api.onPageChange((url) => {
                 const isMessages = /\/messages/.test(url);
-                document.getElementById('messages-nav-link').classList.toggle('active', isMessages);
+               // document.getElementById('messages-nav-link').classList.toggle('active', isMessages);
                 document.getElementById('discourse-nav-link').classList.toggle('active', !isMessages);
             });
 
